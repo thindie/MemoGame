@@ -1,4 +1,4 @@
-package com.example.thindie.memo.presentation
+package com.example.thindie.memogame.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

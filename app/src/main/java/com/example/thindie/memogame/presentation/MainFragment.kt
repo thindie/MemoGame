@@ -1,4 +1,4 @@
-package com.example.thindie.memo.presentation
+package com.example.thindie.memogame.presentation
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.thindie.memogame.R
-
-import com.example.thindie.memogame.presentation.MainViewModel
 
 class MainFragment : Fragment() {
 
