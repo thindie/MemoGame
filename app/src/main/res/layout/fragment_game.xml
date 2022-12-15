@@ -3,18 +3,158 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<TextView
-    style="@style/play_card"
-    android:id="@+id/tv_Opt1"
-    app:layout_constraintStart_toStartOf= "parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    android:background="@color/purple_700"/>
+
+    <TextView
+        style="@style/play_card"
+        android:id="@+id/tv_Opt1"
+        android:layout_marginStart="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/purple_700" />
 
     <TextView
         style="@style/play_card"
         android:id="@+id/tv_Opt2"
         app:layout_constraintStart_toEndOf="@id/tv_Opt1"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/purple_700"/>
+        android:background="@color/purple_700" />
+
+    <TextView
+        style="@style/play_card"
+        android:id="@+id/tv_Opt3"
+        app:layout_constraintStart_toEndOf="@id/tv_Opt2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/purple_700" />
+
+    <TextView
+        style="@style/play_card"
+        android:id="@+id/tv_Opt4"
+        app:layout_constraintStart_toEndOf="@id/tv_Opt3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/purple_700" />
+
+
+    <TextView
+        style="@style/play_card"
+        android:id="@+id/tv_Opt5"
+        android:layout_marginStart="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_Opt1"
+        android:background="@color/purple_700" />
+
+    <TextView
+        style="@style/play_card"
+        android:id="@+id/tv_Opt6"
+        app:layout_constraintStart_toEndOf="@id/tv_Opt5"
+        app:layout_constraintBottom_toTopOf="@id/tv_Opt2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/purple_700" />
+
+    <TextView
+        style="@style/play_card"
+        android:id="@+id/tv_Opt7"
+        app:layout_constraintStart_toEndOf="@id/tv_Opt6"
+        app:layout_constraintBottom_toTopOf="@id/tv_Opt3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/purple_700" />
+
+    <TextView
+        style="@style/play_card"
+        android:id="@+id/tv_Opt8"
+        app:layout_constraintStart_toEndOf="@id/tv_Opt7"
+        app:layout_constraintBottom_toTopOf="@id/tv_Opt4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/purple_700" />
+
+    <TextView
+        style="@style/play_card"
+        android:id="@+id/tv_Opt9"
+        android:layout_marginStart="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_Opt5"
+        android:background="@color/purple_700" />
+
+    <TextView
+        style="@style/play_card"
+        android:id="@+id/tv_Opt10"
+        app:layout_constraintStart_toEndOf="@id/tv_Opt9"
+        app:layout_constraintBottom_toTopOf="@id/tv_Opt6"
+        android:background="@color/purple_700" />
+
+    <TextView
+        style="@style/play_card"
+        android:id="@+id/tv_Opt11"
+        app:layout_constraintStart_toEndOf="@id/tv_Opt10"
+        app:layout_constraintBottom_toTopOf="@id/tv_Opt7"
+        android:background="@color/purple_700" />
+
+    <TextView
+        style="@style/play_card"
+        android:id="@+id/tv_Opt12"
+        app:layout_constraintStart_toEndOf="@id/tv_Opt11"
+        app:layout_constraintBottom_toTopOf="@id/tv_Opt8"
+        android:background="@color/purple_700" />
+
+
+    <TextView
+        style="@style/play_card"
+        android:id="@+id/tv_Opt13"
+        android:layout_marginStart="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_Opt9"
+        android:background="@color/purple_700" />
+
+    <TextView
+        style="@style/play_card"
+        android:id="@+id/tv_Opt14"
+        app:layout_constraintStart_toEndOf="@id/tv_Opt13"
+        app:layout_constraintBottom_toTopOf="@id/tv_Opt10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/purple_700" />
+
+    <TextView
+        style="@style/play_card"
+        android:id="@+id/tv_Opt15"
+        app:layout_constraintStart_toEndOf="@id/tv_Opt14"
+        app:layout_constraintBottom_toTopOf="@id/tv_Opt11"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/purple_700" />
+
+    <TextView
+        style="@style/play_card"
+        android:id="@+id/tv_Opt16"
+        app:layout_constraintStart_toEndOf="@id/tv_Opt15"
+        app:layout_constraintBottom_toTopOf="@id/tv_Opt12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/purple_700" />
+
+    <TextView
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        android:text="score"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textAlignment="gravity"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/purple_700"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:text="0000"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textAlignment="gravity"
+        android:gravity="center"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/teal_200"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
