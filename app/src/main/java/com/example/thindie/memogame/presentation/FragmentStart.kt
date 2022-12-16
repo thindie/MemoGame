@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.thindie.memogame.R
 import com.example.thindie.memogame.databinding.FragmentStartBinding
 import kotlinx.coroutines.*
 
@@ -27,7 +29,7 @@ class FragmentStart : Fragment() {
             startAnimation()
         }
         binding.buStartGame.setOnClickListener {
-
+            findNavController().navigate(R.id.action_fragmentStart_to_fragmentGame)
         }
 
     }
