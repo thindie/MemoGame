@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.thindie.memogame.R
+import com.example.thindie.memogame.databinding.FragmentGameBinding
 
 class FragmentGame : Fragment() {
 
@@ -15,6 +16,8 @@ class FragmentGame : Fragment() {
     }
 
     private lateinit var viewModel: MainViewModel
+    private var _binding : FragmentGameBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +29,14 @@ class FragmentGame : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_game, container, false)
+        _binding = FragmentGameBinding.inflate(inflater,container, false)
+
+        return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }

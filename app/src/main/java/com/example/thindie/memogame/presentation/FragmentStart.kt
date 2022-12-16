@@ -1,32 +1,64 @@
 package com.example.thindie.memogame.presentation
 
-import androidx.lifecycle.ViewModelProvider
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.thindie.memogame.R
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import com.example.thindie.memogame.databinding.FragmentStartBinding
+import kotlinx.coroutines.*
 
 class FragmentStart : Fragment() {
+    private val coroutineScope = CoroutineScope(Dispatchers.Default)
+    private var _binding: FragmentStartBinding? = null
+    private val binding get() = _binding!!
 
-    companion object {
-
-    }
-
-    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        // TODO: Use the ViewModel
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        coroutineScope.launch {
+            startAnimation()
+        }
+        binding.buStartGame.setOnClickListener {
+
+        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_start, container, false)
+        _binding = FragmentStartBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        coroutineScope.cancel()
+        _binding = null
+    }
+
+    private suspend fun startAnimation() {
+        val list: MutableList<TextView> = mutableListOf()
+        list.add(binding.tvOpt1)
+        list.add(binding.tvOpt2)
+        list.add(binding.tvOpt3)
+        list.add(binding.tvOpt4)
+        while (true) {
+            list.forEach {
+                it.setBackgroundColor(Color.RED)
+                list.shuffle()
+                delay(1000)
+            }
+        }
     }
 
 }
