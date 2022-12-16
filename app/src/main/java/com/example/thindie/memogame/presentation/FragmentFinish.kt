@@ -7,24 +7,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.thindie.memogame.R
+import com.example.thindie.memogame.databinding.FragmentFinishBinding
+import com.example.thindie.memogame.databinding.FragmentRecordBinding
 
 class FragmentFinish : Fragment() {
 
+    private var _binding : FragmentFinishBinding? = null
+    private val binding get() = _binding!!
 
 
-    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        // TODO: Use the ViewModel
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_finish, container, false)
+        _binding = FragmentFinishBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
