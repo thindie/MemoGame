@@ -1,12 +1,10 @@
 package com.example.thindie.memogame.presentation
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.thindie.memogame.R
 import com.example.thindie.memogame.databinding.FragmentWriteWinnerBinding
 
 class FragmentWriteWinner : Fragment() {
@@ -15,7 +13,7 @@ class FragmentWriteWinner : Fragment() {
     private val binding get() = _binding!!
 
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: FragmentGameViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

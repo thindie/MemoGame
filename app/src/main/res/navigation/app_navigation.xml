@@ -9,7 +9,7 @@
         android:id="@+id/fragmentStart"
         android:name="com.example.thindie.memogame.presentation.FragmentStart"
         android:label="fragment_start"
-        tools:layout="@layout/fragment_start" >
+        tools:layout="@layout/fragment_start">
         <action
             android:id="@+id/action_fragmentStart_to_fragmentRecord"
             app:destination="@id/fragmentRecord" />

@@ -7,6 +7,10 @@
     tools:layout="@layout/fragment_game"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+
+
+
     <TextView
         style="@style/play_card"
         android:id="@+id/tv_Opt1"
@@ -146,11 +150,27 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="0:00"
+        android:textStyle="bold"
+        android:id="@+id/tv_time"
+        android:textColor="@color/white"
+        android:textAlignment="gravity"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="160dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/purple_500"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
         android:layout_width="140dp"
         android:layout_height="60dp"
         android:text="0000"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:id="@+id/tv_score"
         android:textColor="@color/white"
         android:textAlignment="gravity"
         android:gravity="center"
