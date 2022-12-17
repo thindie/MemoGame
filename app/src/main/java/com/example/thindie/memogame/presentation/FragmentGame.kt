@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.thindie.memogame.R
 import com.example.thindie.memogame.databinding.FragmentGameBinding
+import com.example.thindie.memogame.domain.entities.GameResult
 
 class FragmentGame : Fragment() {
 
@@ -18,8 +21,9 @@ class FragmentGame : Fragment() {
     private var _binding: FragmentGameBinding? = null
     private val binding get() = _binding!!
 
-    private var showTime: Int = 0
-    private var waitTime: Int = 0
+    private var showTime: Int = INITIAL_COUNT
+    private var waitTime: Int = INITIAL_COUNT
+    private var answersNeeded: Int = INITIAL_COUNT
     private lateinit var listOfTV: MutableList<TextView>
 
 
@@ -61,6 +65,20 @@ class FragmentGame : Fragment() {
         viewModel.score.observe(viewLifecycleOwner) {
             binding.tvScore.text = it
         }
+
+        viewModel.recordResult.observe(viewLifecycleOwner) {
+            yesIsaRecord(it)
+        }
+
+        viewModel.noRecordResult.observe(viewLifecycleOwner) {
+            noIsNoRecord(it)
+        }
+
+        viewModel.answersNeeded.observe(viewLifecycleOwner) {
+             answersNeeded = it
+        }
+
+
     }
 
     private fun showThisRound(colors: MutableList<Int>?) {
@@ -118,8 +136,8 @@ class FragmentGame : Fragment() {
 
     private fun solveThisRound(listOfTV: MutableList<TextView>) {
         var timer: CountDownTimer? = null
-
         var count = 0
+
         for (i in 0 until listOfTV.size) {
             listOfTV[i].setTextColor(Color.BLUE)
             listOfTV[i].setBackgroundColor(Color.BLUE)
@@ -127,14 +145,16 @@ class FragmentGame : Fragment() {
                 val tv = it as TextView
                 if (!tv.text.equals(ANSWER)) {
                     showLoseGame()
-
+                    viewModel.isARecordGame()
                 } else {
+                    tv.text = CLEARED_STRING_FIELD
                     count++
-                    if (count == NEEDED_ANSWERS) {
+                    if (count == answersNeeded) {
                         timer?.cancel()
                         viewModel.collectScore()
                         viewModel.askQuestion()
                     }
+
                 }
             }
         }
@@ -149,13 +169,31 @@ class FragmentGame : Fragment() {
 
             override fun onFinish() {
                 showLoseGame()
+                viewModel.isARecordGame()
             }
         }.start()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    private fun yesIsaRecord(gameResult: GameResult) {
+        findNavController().navigate(
+            R.id.action_fragmentGame_to_fragmentWriteWinner,
+            Bundle().apply {
+                putParcelable(
+                    GAME_RESULT, gameResult
+                )
+            }
+        )
+    }
+
+    private fun noIsNoRecord(gameResult: GameResult) {
+        findNavController().navigate(
+            R.id.action_fragmentGame_to_fragmentFinish,
+            Bundle().apply {
+                putParcelable(
+                    GAME_RESULT, gameResult
+                )
+            }
+        )
     }
 
     private fun showLoseGame() {
@@ -167,9 +205,16 @@ class FragmentGame : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     companion object {
+
+        private const val GAME_RESULT = "gameResult"
         private const val TIMER_TICK = 1000L
-        private const val NEEDED_ANSWERS = 2
+        private const val INITIAL_COUNT = 0
         private const val ANSWER = "x"
         private const val CLEARED_STRING_FIELD = ""
     }
