@@ -54,7 +54,12 @@ class FragmentStart : Fragment() {
             list.forEach {
                 it.setBackgroundColor(Color.RED)
                 list.shuffle()
-                delay(1000)
+                delay(300)
+            }
+            list.forEach {
+                it.setBackgroundColor(Color.BLUE)
+                list.shuffle()
+                delay(300)
             }
         }
     }

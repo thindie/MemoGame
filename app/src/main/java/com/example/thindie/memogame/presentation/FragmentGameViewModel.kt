@@ -55,6 +55,10 @@ class FragmentGameViewModel : ViewModel() {
     val  answersNeeded: LiveData<Int>
         get() = _answersNeeded
 
+    init {
+        startGame()
+        setTimer()
+    }
 
     fun collectScore() {
         gameSettings.time = timer
@@ -76,10 +80,7 @@ class FragmentGameViewModel : ViewModel() {
 
     }
 
-    init {
-        startGame()
-        setTimer()
-    }
+
 
     private fun startGame() {
         askQuestion()
