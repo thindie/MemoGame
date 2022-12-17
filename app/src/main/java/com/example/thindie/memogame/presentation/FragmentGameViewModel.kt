@@ -17,7 +17,7 @@ class FragmentGameViewModel : ViewModel() {
     private val saveRecordUseCase = SaveRecordUseCase(repository)
 
     private var timing: CountDownTimer? = null
-    private val gameSettings = GameSettings()
+    private var gameSettings = GameSettings()
     private var timer: Int = gameSettings.time
 
     private val _question = MutableLiveData<MutableList<Int>>()
@@ -29,12 +29,24 @@ class FragmentGameViewModel : ViewModel() {
         get() = _time
 
     private val _waitTime = MutableLiveData<Int>()
-    val  waitTime: LiveData<Int>
+    val waitTime: LiveData<Int>
         get() = _waitTime
 
     private val _showTime = MutableLiveData<Int>()
-    val  showTime : LiveData<Int>
+    val showTime: LiveData<Int>
         get() = _showTime
+
+    private val _score = MutableLiveData<String>()
+    val score: LiveData<String>
+        get() = _score
+
+
+    fun collectScore() {
+        gameSettings.time = timer
+        val gameSettings = collectScoreUseCase.collectScore(gameSettings)
+        this@FragmentGameViewModel.gameSettings = gameSettings
+        _score.value = this@FragmentGameViewModel.gameSettings.score.toString()
+    }
 
     init {
         startGame()
@@ -45,7 +57,7 @@ class FragmentGameViewModel : ViewModel() {
         askQuestion()
     }
 
-    fun askQuestion(){
+    fun askQuestion() {
         _waitTime.value = gameSettings.waitTime
         _showTime.value = gameSettings.showTime
         val question = generateQuestionUseCase.generateQuestion()

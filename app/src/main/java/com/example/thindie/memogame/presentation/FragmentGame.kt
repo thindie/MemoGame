@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.thindie.memogame.databinding.FragmentGameBinding
@@ -18,8 +17,10 @@ class FragmentGame : Fragment() {
     private lateinit var viewModel: FragmentGameViewModel
     private var _binding: FragmentGameBinding? = null
     private val binding get() = _binding!!
-    private var showTime : Int = 0
-    private var waitTime : Int = 0
+
+    private var showTime: Int = 0
+    private var waitTime: Int = 0
+    private lateinit var listOfTV: MutableList<TextView>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,25 +46,26 @@ class FragmentGame : Fragment() {
     private fun startShowGame() {
         viewModel = ViewModelProvider(this)[FragmentGameViewModel::class.java]
 
-        viewModel.showTime.observe(viewLifecycleOwner){
+        viewModel.showTime.observe(viewLifecycleOwner) {
             showTime = it
         }
-
-        viewModel.waitTime.observe(viewLifecycleOwner){
+        viewModel.waitTime.observe(viewLifecycleOwner) {
             waitTime = it
         }
-
         viewModel.question.observe(viewLifecycleOwner) {
             showThisRound(it)
         }
         viewModel.time.observe(viewLifecycleOwner) {
             binding.tvTime.text = it
         }
+        viewModel.score.observe(viewLifecycleOwner) {
+            binding.tvScore.text = it
+        }
     }
 
-    private fun showThisRound(it: MutableList<Int>?) {
+    private fun showThisRound(colors: MutableList<Int>?) {
 
-        val listOfTV: MutableList<TextView> = mutableListOf()
+        listOfTV = mutableListOf()
         with(binding) {
             listOfTV.add(tvOpt1)
             listOfTV.add(tvOpt2)
@@ -82,7 +84,7 @@ class FragmentGame : Fragment() {
             listOfTV.add(tvOpt15)
             listOfTV.add(tvOpt16)
         }
-        val listOfColors = it ?: throw RuntimeException("Empty list of colors")
+        val listOfColors = colors ?: throw RuntimeException("Empty list of colors")
 
         for (i in 0 until listOfTV.size) {
             val color = listOfColors[i]
@@ -99,9 +101,9 @@ class FragmentGame : Fragment() {
 
         }
 
-          object : CountDownTimer(
-            showTime *  TIMER_TICK,
-             TIMER_TICK
+        object : CountDownTimer(
+            showTime * TIMER_TICK,
+            TIMER_TICK
         ) {
 
             override fun onTick(millisUntilFinished: Long) {
@@ -112,42 +114,43 @@ class FragmentGame : Fragment() {
                 solveThisRound(listOfTV)
             }
         }.start()
-   }
+    }
 
     private fun solveThisRound(listOfTV: MutableList<TextView>) {
+        var timer: CountDownTimer? = null
+
         var count = 0
         for (i in 0 until listOfTV.size) {
-                listOfTV[i].setTextColor(Color.BLUE)
-                listOfTV[i].setBackgroundColor(Color.BLUE)
-                listOfTV[i].setOnClickListener {
-                    val tv = it as TextView
-                    if(!tv.text.equals(ANSWER)){
-                        Toast.makeText(requireContext(),"bad", Toast.LENGTH_SHORT).show()
+            listOfTV[i].setTextColor(Color.BLUE)
+            listOfTV[i].setBackgroundColor(Color.BLUE)
+            listOfTV[i].setOnClickListener {
+                val tv = it as TextView
+                if (!tv.text.equals(ANSWER)) {
+                    showLoseGame()
 
+                } else {
+                    count++
+                    if (count == NEEDED_ANSWERS) {
+                        timer?.cancel()
+                        viewModel.collectScore()
+                        viewModel.askQuestion()
                     }
-                    else{
-                        count++
-                        if(count == NEEDED_ANSWERS){
-                            Toast.makeText(requireContext(),"cool", Toast.LENGTH_SHORT).show()
-                            viewModel.askQuestion()
-                        }
-                    }
                 }
-
-            object : CountDownTimer(
-                waitTime *  TIMER_TICK,
-                TIMER_TICK
-            ) {
-
-                override fun onTick(millisUntilFinished: Long) {
-
-                }
-
-                override fun onFinish() {
-
-                }
-            }.start()
+            }
         }
+        timer = object : CountDownTimer(
+            waitTime * TIMER_TICK,
+            TIMER_TICK
+        ) {
+
+            override fun onTick(millisUntilFinished: Long) {
+
+            }
+
+            override fun onFinish() {
+                showLoseGame()
+            }
+        }.start()
     }
 
     override fun onDestroy() {
@@ -155,7 +158,16 @@ class FragmentGame : Fragment() {
         _binding = null
     }
 
-    companion object{
+    private fun showLoseGame() {
+        listOfTV.forEach {
+            it.setTextColor(Color.RED)
+            it.setBackgroundColor(Color.RED)
+            it.isClickable = false
+            it.isFocusable = false
+        }
+    }
+
+    companion object {
         private const val TIMER_TICK = 1000L
         private const val NEEDED_ANSWERS = 2
         private const val ANSWER = "x"

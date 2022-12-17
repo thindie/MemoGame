@@ -38,7 +38,11 @@
         android:id="@+id/fragmentFinish"
         android:name="com.example.thindie.memogame.presentation.FragmentFinish"
         android:label="fragment_finish"
-        tools:layout="@layout/fragment_finish" />
+        tools:layout="@layout/fragment_finish" >
+        <argument
+            android:name="gameResult"
+            app:argType="com.example.thindie.memogame.domain.entities.GameResult" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentWriteWinner"
         android:name="com.example.thindie.memogame.presentation.FragmentWriteWinner"
@@ -47,5 +51,8 @@
         <action
             android:id="@+id/action_fragmentWriteWinner_to_fragmentFinish"
             app:destination="@id/fragmentFinish" />
+        <argument
+            android:name="gameResult"
+            app:argType="com.example.thindie.memogame.domain.entities.GameResult" />
     </fragment>
 </navigation>
