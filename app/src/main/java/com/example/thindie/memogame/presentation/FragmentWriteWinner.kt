@@ -13,8 +13,6 @@ class FragmentWriteWinner : Fragment() {
     private val binding get() = _binding!!
 
 
-    private lateinit var viewModel: FragmentGameViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
