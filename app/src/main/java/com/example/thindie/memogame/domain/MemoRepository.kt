@@ -7,6 +7,6 @@ import com.example.thindie.memogame.domain.entities.GameSettings
 
 interface MemoRepository {
     fun generateQuestion(): GameQuestion
-    fun saveRecord(gameResult: GameResult)
+    fun saveRecord(gameResult: GameResult) : Boolean
     fun collectScore(gameSettings: GameSettings): GameSettings
 }

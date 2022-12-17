@@ -20,9 +20,10 @@ class MemoRepositoryImpl : MemoRepository {
         return question
     }
 
-    override fun saveRecord(gameResult: GameResult) {
-        TODO()
+    override fun saveRecord(gameResult: GameResult): Boolean {
 
+
+        return false
     }
 
     override fun collectScore(gameSettings: GameSettings): GameSettings {
@@ -31,21 +32,23 @@ class MemoRepositoryImpl : MemoRepository {
             when (time / 10) {
                 0 -> score += 50
                 1 -> {
-                    score += 100; showTime--
+                    score += 100; showTime = 4
                 }
                 2 -> {
-                    score += 100; waitTime--
+                    score += 100; showTime = 3
                 }
                 3 -> {
-                    score += 100; showTime--
+                    score += 100; waitTime = 3
                 }
                 4 -> {
-                    score += 200; waitTime--
+                    score += 200; showTime = 2
                 }
                 5 -> {
-                    score += 300; showTime--
+                    score += 300; waitTime = 2
                 }
-                else -> score += 400
+                else -> {
+                    score += 400; showTime = 1
+                }
             }
         }
         return operation
