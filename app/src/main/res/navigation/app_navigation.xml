@@ -42,6 +42,12 @@
         <argument
             android:name="gameResult"
             app:argType="com.example.thindie.memogame.domain.entities.GameResult" />
+        <action
+            android:id="@+id/action_fragmentFinish_to_fragmentRecord2"
+            app:destination="@id/fragmentRecord" />
+        <action
+            android:id="@+id/action_fragmentFinish_to_fragmentGame"
+            app:destination="@id/fragmentGame" />
     </fragment>
     <fragment
         android:id="@+id/fragmentWriteWinner"
