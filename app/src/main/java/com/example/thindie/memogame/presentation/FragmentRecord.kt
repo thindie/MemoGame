@@ -1,16 +1,23 @@
 package com.example.thindie.memogame.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.example.thindie.memogame.databinding.FragmentRecordBinding
+import com.example.thindie.memogame.domain.entities.GameResult
+import com.example.thindie.memogame.domain.entities.GameSettings
 
 class FragmentRecord : Fragment() {
 
+
     private var _binding: FragmentRecordBinding? = null
     private val binding get() = _binding!!
+
+
 
 
     override fun onCreateView(
@@ -25,5 +32,7 @@ class FragmentRecord : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
+
 
 }
