@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <TextView
         android:id="@+id/bu_startGame"
         style="@style/button"
         android:text="старт"
@@ -15,9 +15,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <TextView
         android:id="@+id/bu_showScores"
+        android:background="@drawable/button"
         style="@style/button"
+        android:gravity="center"
+        android:textAlignment="gravity"
         android:text="лучшие игроки"
         app:layout_constraintBottom_toTopOf="@id/bu_startGame"
         app:layout_constraintEnd_toEndOf="parent"
