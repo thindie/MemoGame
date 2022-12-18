@@ -17,7 +17,9 @@ import com.example.thindie.memogame.domain.entities.GameResult
 class FragmentGame : Fragment() {
 
 
-    private lateinit var viewModel: FragmentGameViewModel
+    private val viewModel: FragmentGameViewModel by lazy {
+         ViewModelProvider(this)[FragmentGameViewModel::class.java]
+    }
     private var _binding: FragmentGameBinding? = null
     private val binding get() = _binding!!
 
@@ -26,12 +28,6 @@ class FragmentGame : Fragment() {
     private var answersNeeded: Int = INITIAL_COUNT
     private lateinit var listOfTV: MutableList<TextView>
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[FragmentGameViewModel::class.java]
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +44,7 @@ class FragmentGame : Fragment() {
     }
 
     private fun startShowGame() {
-        viewModel = ViewModelProvider(this)[FragmentGameViewModel::class.java]
+
 
         viewModel.showTime.observe(viewLifecycleOwner) {
             showTime = it

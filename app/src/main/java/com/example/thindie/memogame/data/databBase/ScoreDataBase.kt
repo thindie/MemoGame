@@ -25,7 +25,9 @@ abstract class ScoreDataBase : RoomDatabase() {
                 application,
                 ScoreDataBase::class.java,
                 DB_NAME
-            ).build()
+            )
+                .allowMainThreadQueries()
+                .build()
             INSTANCE = dataBase
             return INSTANCE as ScoreDataBase
         }

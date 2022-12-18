@@ -1,6 +1,8 @@
 package com.example.thindie.memogame.presentation
 
+import android.app.Application
 import android.os.CountDownTimer
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,8 +13,8 @@ import com.example.thindie.memogame.domain.useCases.CollectScoreUseCase
 import com.example.thindie.memogame.domain.useCases.GenerateQuestionUseCase
 import com.example.thindie.memogame.domain.useCases.SaveRecordUseCase
 
-class FragmentGameViewModel : ViewModel() {
-    private val repository = MemoRepositoryImpl()
+class FragmentGameViewModel(application: Application) : AndroidViewModel(application) {
+    private val repository = MemoRepositoryImpl(application)
     private var gameSettings = GameSettings()
     private val collectScoreUseCase = CollectScoreUseCase(repository)
     private val generateQuestionUseCase = GenerateQuestionUseCase(repository)
