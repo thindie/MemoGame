@@ -29,8 +29,8 @@ class MemoRepositoryImpl(application: Application) : MemoRepository {
                 for (i in 0 until question.size) {
                     question.listOfColors.add(Color.BLUE)
                 }
-                question.listOfColors.add(Color.CYAN)
-                question.listOfColors.add(Color.CYAN)
+                question.listOfColors.add(Color.RED)
+                question.listOfColors.add(Color.RED)
                 question.listOfColors.shuffle()
                 return question
             }
@@ -38,9 +38,9 @@ class MemoRepositoryImpl(application: Application) : MemoRepository {
                 for (i in 0 until question.size - 1) {
                     question.listOfColors.add(Color.BLUE)
                 }
-                question.listOfColors.add(Color.CYAN)
-                question.listOfColors.add(Color.CYAN)
-                question.listOfColors.add(Color.CYAN)
+                question.listOfColors.add(Color.RED)
+                question.listOfColors.add(Color.RED)
+                question.listOfColors.add(Color.RED)
                 question.listOfColors.shuffle()
                 return question
             }
@@ -48,10 +48,10 @@ class MemoRepositoryImpl(application: Application) : MemoRepository {
                 for (i in 0 until question.size - 2) {
                     question.listOfColors.add(Color.BLUE)
                 }
-                question.listOfColors.add(Color.CYAN)
-                question.listOfColors.add(Color.CYAN)
-                question.listOfColors.add(Color.CYAN)
-                question.listOfColors.add(Color.CYAN)
+                question.listOfColors.add(Color.RED)
+                question.listOfColors.add(Color.RED)
+                question.listOfColors.add(Color.RED)
+                question.listOfColors.add(Color.RED)
                 question.listOfColors.shuffle()
                 return question
             }
@@ -59,7 +59,7 @@ class MemoRepositoryImpl(application: Application) : MemoRepository {
 
     }
 
-    override fun saveRecord(gameResult: GameResult): Boolean {
+    override fun checkRecord(gameResult: GameResult): Boolean {
         if(gameResult.score < 600) return false
         if(dataBaseList.isEmpty()) return true
         if(dataBaseList.last().score > gameResult.score ) return false
@@ -96,7 +96,7 @@ class MemoRepositoryImpl(application: Application) : MemoRepository {
         return operation
     }
 
-    fun addScore(gameRecord: GameRecord){
+   override fun addScore(gameRecord: GameRecord){
         val dbList: MutableList<ScoreDbModel> = dataBaseList as MutableList
         val dbModel = mapper.recordToScoreDB(gameRecord)
         dbList.add(dbModel)
@@ -105,7 +105,7 @@ class MemoRepositoryImpl(application: Application) : MemoRepository {
         }
     }
 
-    fun showWinners() : GameWinners{
+    override fun getWinners() : GameWinners{
         val gameWinners = GameWinners(list = mutableListOf())
         val list = dataBaseList.map {
             mapper.scoreDBtoScore(it)
@@ -113,4 +113,6 @@ class MemoRepositoryImpl(application: Application) : MemoRepository {
         gameWinners.list.addAll(list)
         return gameWinners
     }
+
+
 }

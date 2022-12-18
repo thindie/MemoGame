@@ -31,7 +31,11 @@ class FragmentWriteWinner : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         fragmentWriteWinnerViewModel.done.observe(viewLifecycleOwner){
             findNavController()
-                .navigate(R.id.action_fragmentWriteWinner_to_fragmentFinish)
+                .navigate(R.id.action_fragmentWriteWinner_to_fragmentFinish,
+                    Bundle().apply {
+                        putParcelable(GAME_RESULT, gameResult)
+                    }
+                )
         }
 
         fragmentWriteWinnerViewModel.setGameResult(gameResult)

@@ -23,4 +23,89 @@
         android:text="лучшие игроки"
         android:id="@+id/bu_showScores"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5
+
+" />
+
+    <TextView
+        android:id="@+id/tv_Opt1"
+        style="@style/decor_card"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        android:layout_marginEnd="300dp"
+        app:layout_constraintStart_toStartOf="parent"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_Opt2"
+        style="@style/decor_card"
+        android:layout_marginStart="4dp"
+        android:background="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        app:layout_constraintEnd_toStartOf="@id/tv_Opt3"
+        app:layout_constraintStart_toEndOf="@id/tv_Opt1"
+          />
+
+    <TextView
+
+        android:id="@+id/tv_Opt3"
+        style="@style/decor_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        app:layout_constraintStart_toEndOf="@id/tv_Opt2"
+        app:layout_constraintEnd_toStartOf="@id/tv_Opt4"
+        android:layout_marginTop="110dp"
+          />
+
+    <TextView
+        android:id="@+id/tv_Opt4"
+        style="@style/decor_card"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/purple_700"
+        android:layout_marginTop="110dp"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        app:layout_constraintStart_toEndOf="@id/tv_Opt3"
+        app:layout_constraintEnd_toEndOf="parent"
+         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_result"
+        android:text="ваш результат 0000"
+        android:textColor="@color/purple_700"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="очков"
+        android:textColor="@color/purple_700"
+        android:textSize="20sp"
+        android:layout_marginTop="50sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
