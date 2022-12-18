@@ -102,7 +102,7 @@ class FragmentGame : Fragment() {
 
         for (i in 0 until listOfTV.size) {
             val color = listOfColors[i]
-            if (color == Color.CYAN) {
+            if (color == Color.RED) {
                 listOfTV[i].setTextColor(color)
                 listOfTV[i].text = ANSWER
 

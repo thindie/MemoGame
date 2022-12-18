@@ -24,12 +24,18 @@ class FragmentStart : Fragment() {
         coroutineScope.launch {
             startAnimation()
         }
-        binding.buStartGame.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentStart_to_fragmentGame)
-        }
+        setOnClickListeners()
 
     }
 
+    private fun setOnClickListeners(){
+        binding.buStartGame.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentStart_to_fragmentGame)
+        }
+        binding.buShowScores.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentStart_to_fragmentRecord)
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,12 +60,12 @@ class FragmentStart : Fragment() {
             list.forEach {
                 it.setBackgroundColor(Color.RED)
                 list.shuffle()
-                delay(300)
+                delay(500)
             }
             list.forEach {
-                it.setBackgroundColor(Color.BLUE)
+                it.setBackgroundColor(resources.getColor(R.color.purple_700))
                 list.shuffle()
-                delay(300)
+                delay(500)
             }
         }
     }

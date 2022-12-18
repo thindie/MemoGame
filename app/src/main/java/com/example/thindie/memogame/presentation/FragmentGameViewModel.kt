@@ -5,20 +5,19 @@ import android.os.CountDownTimer
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.thindie.memogame.data.repository.MemoRepositoryImpl
 import com.example.thindie.memogame.domain.entities.GameResult
 import com.example.thindie.memogame.domain.entities.GameSettings
 import com.example.thindie.memogame.domain.useCases.CollectScoreUseCase
 import com.example.thindie.memogame.domain.useCases.GenerateQuestionUseCase
-import com.example.thindie.memogame.domain.useCases.SaveRecordUseCase
+import com.example.thindie.memogame.domain.useCases.CheckRecordUseCase
 
 class FragmentGameViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = MemoRepositoryImpl(application)
     private var gameSettings = GameSettings()
     private val collectScoreUseCase = CollectScoreUseCase(repository)
     private val generateQuestionUseCase = GenerateQuestionUseCase(repository)
-    private val saveRecordUseCase = SaveRecordUseCase(repository)
+    private val checkRecordUseCase = CheckRecordUseCase(repository)
 
     private var timing: CountDownTimer? = null
 
@@ -74,7 +73,7 @@ class FragmentGameViewModel(application: Application) : AndroidViewModel(applica
             gameSettings.score,
             timer
         )
-        if (saveRecordUseCase.saveRecord(gameResult)) {
+        if (checkRecordUseCase.checkRecord(gameResult)) {
             _recordResult.value = gameResult
         } else {
             _noRecordResult.value = gameResult
@@ -113,8 +112,8 @@ class FragmentGameViewModel(application: Application) : AndroidViewModel(applica
     private fun formatTime(l: Long): String {
         val seconds = 60
         val minutes = l / seconds
-        val seconds_ = l - minutes
-        return String.format("%02d:%02d", minutes, seconds_)
+        val secondz = l - (minutes * seconds)
+        return String.format("%02d:%02d", minutes, secondz)
     }
 
     companion object {

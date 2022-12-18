@@ -7,9 +7,11 @@ import androidx.lifecycle.MutableLiveData
 import com.example.thindie.memogame.data.repository.MemoRepositoryImpl
 import com.example.thindie.memogame.domain.entities.GameRecord
 import com.example.thindie.memogame.domain.entities.GameResult
+import com.example.thindie.memogame.domain.useCases.AddScoreUseCase
 
 class FragmentWriteWinnerViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = MemoRepositoryImpl(application)
+    private val addScore = AddScoreUseCase(repository)
     private lateinit var gameResult: GameResult
 
     private var _done = MutableLiveData<Unit>()
@@ -21,7 +23,7 @@ class FragmentWriteWinnerViewModel(application: Application) : AndroidViewModel(
             name,
             gameResult.score
         )
-        repository.addScore(gameRecord)
+         addScore.addScore(gameRecord)
         _done.value = Unit
     }
 
